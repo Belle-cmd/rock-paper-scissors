@@ -1,3 +1,5 @@
+"use strict";
+
 /*
 Function that randomly returns either "Rock", "Paper" or "Scissors".
 This acts as the computer's play.
@@ -30,7 +32,34 @@ Output:
     string that declares the winner of the round like so: "You Lose! Paper beats Rock"
 */
 function playRound(playerSelection, computerSelection) {
+    // checks for the input values, if both string, continue execution, else exit program
+    if ((typeof(playerSelection) !== "string") && (typeof(computerSelection) !== "number")) {
+        console.log("Invalid input");
+        return;
+    }
+    
+    // set parameter values to lowercase to ensure inputs get accepted regardless if case-sensitive or not
+    let player = playerSelection.toLowerCase();
+    let computer = computerSelection.toLowerCase();
 
+    // outputs specified game result, based on the player and computer's input
+    if (player == computer) {
+        return `Draw; ${player} equals ${computer}!`;
+    } else if ((player=="paper") && (computer=="rock")) {
+        return "You win; paper beats rock!";
+    } else if ((player=="paper") && (computer=="scissors")) {
+        return "You lose; scissors beat paper";
+
+    } else if ((player=="rock") && (computer=="scissors")) {
+        return "You win; rock beats scissors!";
+    } else if ((player=="rock") && (computer=="paper")) {
+        return "You lose; paper beats rock!";
+
+    } else if ((player=="scissors") && (computer=="paper")) {
+        return "You win; scissors beats paper!";
+    } else {
+        return "You lose; rock beats scissors!";
+    }
 }
 
 /*
