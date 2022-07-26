@@ -5,8 +5,18 @@ Input:
 Output:
 */
 function getComputerChoice() {
+    let randomInt = Math.floor(Math.random()*100);  // generates a number from 0-99
 
+    // depending on the value of randomInt, this function will return rock, paper, scissors
+    if (randomInt <= 33) {
+        return "Rock";
+    } else if (randomInt <= 66) {
+        return "Paper";
+    } else {
+        return "Scissors";
+    }
 }
+
 
 /*
 Function that plays a single round of Rock Paper Scissors.
