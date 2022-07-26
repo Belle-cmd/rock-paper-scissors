@@ -24,41 +24,29 @@ function getComputerChoice() {
 
 /*
 Function that plays a single round of Rock Paper Scissors.
-- parameters are case-sensitive; users can input "rock", "ROCK", "RocK" or any other variation
 Input:
-    playerSelection
-    computerSelection
+    playerSelection - the user's input
+    computerSelection - computer's turn
 Output: 
-    string that declares the winner of the round like so: "You Lose! Paper beats Rock"
+    string indicating if the player wins or loses
 */
 function playRound(playerSelection, computerSelection) {
-    // checks for the input values, if both string, continue execution, else exit program
-    if ((typeof(playerSelection) !== "string") && (typeof(computerSelection) !== "string")) {
-        console.log("Invalid input");
-        return;
-    }
-    
-    // set parameter values to lowercase to ensure inputs get accepted regardless if case-sensitive or not
+    if (playerSelection == computerSelection) {
+        return `Draw; ${playerSelection} equals ${computerSelection}!`;
+    } else if ((playerSelection=="paper") && (computerSelection=="rock")) {
+        return "win";
+    } else if ((playerSelection=="paper") && (computerSelection=="scissors")) {
+        return "lose";
 
-    let computer = computerSelection.toLowerCase();
+    } else if ((playerSelection=="rock") && (computerSelection=="scissors")) {
+        return "win";
+    } else if ((playerSelection=="rock") && (computerSelection=="paper")) {
+        return "lose";
 
-    // outputs specified game result, based on the player and computer's input
-    if (player == computer) {
-        return `Draw; ${player} equals ${computer}!`;
-    } else if ((player=="paper") && (computer=="rock")) {
-        return "You win; paper beats rock!";
-    } else if ((player=="paper") && (computer=="scissors")) {
-        return "You lose; scissors beat paper";
-
-    } else if ((player=="rock") && (computer=="scissors")) {
-        return "You win; rock beats scissors!";
-    } else if ((player=="rock") && (computer=="paper")) {
-        return "You lose; paper beats rock!";
-
-    } else if ((player=="scissors") && (computer=="paper")) {
-        return "You win; scissors beats paper!";
+    } else if ((playerSelection=="scissors") && (computerSelection=="paper")) {
+        return "win";
     } else {
-        return "You lose; rock beats scissors!";
+        return "lose";
     }
 }
 
@@ -93,7 +81,7 @@ function game() {
     let computerScore = 0;
     let outcome;
     while (counter != 5) {
-
+        // retrieve inputs for player and computer
         let player = userInput();
         let computer = getComputerChoice();
 
