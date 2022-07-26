@@ -90,12 +90,12 @@ function game() {
 
         // play a match and increment score
         outcome = playRound(player, computer);
-        if (outcome.search("win") != -1) {
+        if (outcome == "win") {
             playerScore++;
-        } else if (outcome.search("lose") != -1) {
+        } else if (outcome == "lose") {
             computerScore++;
         } 
-        counter++;
+        counter++;  // increment loop
     }
     
     if (playerScore > computerScore) {
@@ -107,4 +107,4 @@ function game() {
     }
 }
 
-// game();
+game();
