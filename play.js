@@ -39,7 +39,7 @@ function playRound(playerSelection, computerSelection) {
     }
     
     // set parameter values to lowercase to ensure inputs get accepted regardless if case-sensitive or not
-    let player = playerSelection.toLowerCase();
+
     let computer = computerSelection.toLowerCase();
 
     // outputs specified game result, based on the player and computer's input
@@ -63,6 +63,27 @@ function playRound(playerSelection, computerSelection) {
 }
 
 /*
+Ask user for a proper input. The function will only accept the inputs rock, paper, or scissors.
+userInput() will not stop asking for input until it receives the proper input. It will ignore any
+input that isn't rock, paper, scissors.
+Input:
+    None
+Output:
+    The input rock, paper, or scissors from the user
+*/
+function userInput() {
+    let input;
+    while (input == null) {
+        input = prompt("Your move? ").toLowerCase();
+        if ((input == "rock") || (input == "paper") || input == "scissors") {
+            return input;
+        } else {
+            input = null;
+        }
+    }
+}
+
+/*
 Function that plays 5 rounds, keep score, and reports the winner or loser at the end
 */
 function game() {
@@ -72,11 +93,8 @@ function game() {
     let computerScore = 0;
     let outcome;
     while (counter != 5) {
-        // prompt won't stop until the user enters input
-        let player;
-        while (player == null) {
-            player = prompt("Your move? ");
-        }
+
+        let player = userInput();
         let computer = getComputerChoice();
 
         // output user input and computer's choice into console
@@ -101,4 +119,4 @@ function game() {
     }
 }
 
-game();
+// game();
