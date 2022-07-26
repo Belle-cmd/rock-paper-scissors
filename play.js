@@ -1,8 +1,10 @@
 /*
-Function that randomly returns either ‘Rock’, ‘Paper’ or ‘Scissors’.
+Function that randomly returns either "Rock", "Paper" or "Scissors".
 This acts as the computer's play.
-Input:
-Output:
+Input: 
+    None
+Output: 
+    String output "Rock", "Paper", or "Scissors"
 */
 function getComputerChoice() {
     let randomInt = Math.floor(Math.random()*100);  // generates a number from 0-99
