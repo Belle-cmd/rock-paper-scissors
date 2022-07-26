@@ -33,7 +33,7 @@ Output:
 */
 function playRound(playerSelection, computerSelection) {
     // checks for the input values, if both string, continue execution, else exit program
-    if ((typeof(playerSelection) !== "string") && (typeof(computerSelection) !== "number")) {
+    if ((typeof(playerSelection) !== "string") && (typeof(computerSelection) !== "string")) {
         console.log("Invalid input");
         return;
     }
@@ -66,5 +66,39 @@ function playRound(playerSelection, computerSelection) {
 Function that plays 5 rounds, keep score, and reports the winner or loser at the end
 */
 function game() {
-    // playRound()
+    console.log("Rock, paper, scissors! Commence battle!");
+    let counter = 0;
+    let playerScore = 0;
+    let computerScore = 0;
+    let outcome;
+    while (counter != 5) {
+        // prompt won't stop until the user enters input
+        let player;
+        while (player == null) {
+            player = prompt("Your move? ");
+        }
+        let computer = getComputerChoice();
+
+        // output user input and computer's choice into console
+        console.log(`You: ${player}\nComputer: ${computer}`);
+
+        // play a match and increment score
+        outcome = playRound(player, computer);
+        if (outcome.search("win") != -1) {
+            playerScore++;
+        } else if (outcome.search("lose") != -1) {
+            computerScore++;
+        } 
+        counter++;
+    }
+    
+    if (playerScore > computerScore) {
+        console.log("You win the game!")
+    } else if (computerScore > playerScore) {
+        console.log("You lose the game!")
+    } else {
+        console.log("Draw!")
+    }
 }
+
+game();
