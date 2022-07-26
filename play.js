@@ -13,11 +13,11 @@ function getComputerChoice() {
 
     // depending on the value of randomInt, this function will return rock, paper, scissors
     if (randomInt <= 33) {
-        return "Rock";
+        return "rock";
     } else if (randomInt <= 66) {
-        return "Paper";
+        return "paper";
     } else {
-        return "Scissors";
+        return "scissors";
     }
 }
 
@@ -32,7 +32,7 @@ Output:
 */
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-        return `Draw; ${playerSelection} equals ${computerSelection}!`;
+        return "Draw";
     } else if ((playerSelection=="paper") && (computerSelection=="rock")) {
         return "win";
     } else if ((playerSelection=="paper") && (computerSelection=="scissors")) {
@@ -85,25 +85,26 @@ function game() {
         let player = userInput();
         let computer = getComputerChoice();
 
-        // output user input and computer's choice into console
-        console.log(`You: ${player}\nComputer: ${computer}`);
-
         // play a match and increment score
         outcome = playRound(player, computer);
         if (outcome == "win") {
             playerScore++;
         } else if (outcome == "lose") {
             computerScore++;
-        } 
+        }
+        
+        // output user input and computer's choice into console
+        console.log(
+            `You: ${player}\nComputer: ${computer}\n\nYour score: ${playerScore}\nComputer's Score: ${computerScore}`);
         counter++;  // increment loop
     }
     
-    if (playerScore > computerScore) {
-        console.log("You win the game!")
-    } else if (computerScore > playerScore) {
-        console.log("You lose the game!")
+    if (playerScore == computerScore) {
+        console.log("Draw! No one wins!")
+    } else if (playerScore > computerScore) {
+        console.log("You win!")
     } else {
-        console.log("Draw!")
+        console.log("You lose!")
     }
 }
 
