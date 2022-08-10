@@ -2,6 +2,15 @@
 let playerScore = 0;
 let computerScore = 0;
 
+let compHealthPanel = document.getElementById("enemy-health");
+let playerHealthPanel = document.getElementById("player-health");
+let computerHealth = document.getElementById("enemy-healthbar");
+let playerHealth = document.getElementById("player-healthbar");
+const text = document.getElementById("text");
+const buttons = document.getElementById("moves").querySelectorAll('button');
+
+
+
 /*
 Function that randomly returns either "Rock", "Paper" or "Scissors".
 This acts as the computer's play.
@@ -52,8 +61,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-let computerHealth = document.getElementById("enemy-healthbar");
-let playerHealth = document.getElementById("player-healthbar");
+
 /**
  * Function increments playerScore or computerScore depending on a round's results.
  * @param {*} result 
@@ -89,17 +97,30 @@ function isGameEnd() {
     }
 }
 
+function healthBarAnimation() {
+    compHealthPanel.classList.add("slide-left");
+    playerHealthPanel.classList.add("slide-right");
+
+    setTimeout(() => {
+        compHealthPanel.classList.remove("slide-left");
+        playerHealthPanel.classList.remove("slide-right");
+    }, 5000);
+
+}
+
 
 function RestartGame() {
     computerScore = 0;
     playerScore = 0;
     computerHealth.style.width = "160px";
     playerHealth.style.width = "160px";
+
+    healthBarAnimation();  // trigger animation
+
 }
 
 
-const text = document.getElementById("text");
-const buttons = document.getElementById("moves").querySelectorAll('button');
+
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
         let compChoice = getComputerChoice();

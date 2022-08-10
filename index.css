@@ -7,6 +7,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 
@@ -169,4 +170,22 @@ body {
     white-space: pre-line; /* enable text to wrap when necessary, and on line breaks*/
     padding-left: 16px;
     padding-right: 16px;
+}
+
+/* Moving transition for the healthbars */
+.slide-left {
+    position: relative;
+    animation: left 5s 1;
+}
+.slide-right {
+    position: relative;
+    animation: right 5s 1;
+}
+@keyframes left {
+    from {left: -60px;}
+    to {left: 0px;}
+}
+@keyframes right {
+    from {left: 60px;}
+    to { left: 0px;}
 }
