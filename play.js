@@ -71,28 +71,30 @@ function UpdateScore(result) {
 }
 
 /**
- * Function checks if the computer and/or player has reached 5 points. If so, the game has ended
+ * Function checks if the computer and/or player has reached 5 points. If so, the game has ended.
+  * Returns boolean indicating the game's end
  */
 function isGameEnd() {
     if ((playerScore===5) && (computerScore===5)) {
         console.log("Draw");
-        // computerScore = 0;
-        // playerScore = 0;
-        // // computerHealth.style.width = "160px";
-        // // playerHealth.style.width = "160px";
+        return true;
     } else if ((playerScore===5) && (playerScore > computerScore)) {
         console.log("You win");
-        // computerScore = 0;
-        // playerScore = 0;
-        // computerHealth.style.width = "160px";
-        // playerHealth.style.width = "160px";
+        return true;
     } else if ((computerScore===5) && (computerScore > playerScore)) {
         console.log("You lose");
-        // computerScore = 0;
-        // playerScore = 0;
-        // computerHealth.style.width = "160px";
-        // playerHealth.style.width = "160px";
+        return true;
+    } else {
+        return false;
     }
+}
+
+
+function RestartGame() {
+    computerScore = 0;
+    playerScore = 0;
+    computerHealth.style.width = "160px";
+    playerHealth.style.width = "160px";
 }
 
 
@@ -103,7 +105,10 @@ buttons.forEach((btn) => {
         let compChoice = getComputerChoice();
         text.textContent = `Player used ${btn.textContent.toLowerCase()}!\nFoe computer used ${compChoice}!`;
         let result = playRound(btn.textContent.toLowerCase(), compChoice);
+        
         UpdateScore(result);
-        isGameEnd();
+        if (isGameEnd()) {
+            RestartGame();
+        }
     });
 })
