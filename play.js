@@ -1,4 +1,6 @@
 "use strict";
+let playerScore = 0;
+let computerScore = 0;
 
 /*
 Function that randomly returns either "Rock", "Paper" or "Scissors".
@@ -50,62 +52,40 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-/*
-Ask user for a proper input. The function will only accept the inputs rock, paper, or scissors.
-userInput() will not stop asking for input until it receives the proper input. It will ignore any
-input that isn't rock, paper, scissors.
-Input:
-    None
-Output:
-    The input rock, paper, or scissors from the user
-*/
-function userInput() {
-    let input;
-    while (input == null) {
-        input = prompt("Your move? ").toLowerCase();
-        if ((input == "rock") || (input == "paper") || input == "scissors") {
-            return input;
-        } else {
-            input = null;
-        }
+/**
+ * Function increments playerScore or computerScore depending on a round's results.
+ * @param {*} result 
+ */
+function UpdateScore(result) {
+    if (result === "win") {
+        playerScore++;
+    } else  {
+        computerScore++;
     }
 }
 
-/*
-Function that plays 5 rounds, keep score, and reports the winner or loser at the end
-*/
-function game() {
-    console.log("Rock, paper, scissors! Commence battle!");
-    let counter = 0;
-    let playerScore = 0;
-    let computerScore = 0;
-    let outcome;
-    while (counter != 5) {
-        // retrieve inputs for player and computer
-        let player = userInput();
-        let computer = getComputerChoice();
-
-        // play a match and increment score
-        outcome = playRound(player, computer);
-        if (outcome == "win") {
-            playerScore++;
-        } else if (outcome == "lose") {
-            computerScore++;
-        }
-        
-        // output user input and computer's choice into console
-        console.log(
-            `You: ${player}\nComputer: ${computer}\n\nYour score: ${playerScore}\nComputer's Score: ${computerScore}`);
-        counter++;  // increment loop
-    }
-    
-    if (playerScore == computerScore) {
-        console.log("Draw! No one wins!")
-    } else if (playerScore > computerScore) {
-        console.log("You win!")
-    } else {
-        console.log("You lose!")
+function GameEnd() {
+    if ((playerScore===5) && (computerScore===5)) {
+        console.log("Draw");
+        computerScore = 0;
+        playerScore = 0;
+    } else if ((playerScore===5) && (playerScore > computerScore)) {
+        console.log("You win");
+        computerScore = 0;
+        playerScore = 0;
+    } else if ((computerScore===5) && (computerScore > playerScore)) {
+        console.log("You lose");
+        computerScore = 0;
+        playerScore = 0;
     }
 }
 
-game();
+
+const buttons = document.getElementById("moves").querySelectorAll('button');
+buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        let result = playRound(btn.textContent.toLowerCase(), getComputerChoice());
+        UpdateScore(result);
+        GameEnd();
+    });
+})
