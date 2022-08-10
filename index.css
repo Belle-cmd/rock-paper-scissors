@@ -13,8 +13,8 @@ body {
 
 /* Style for the animal battle */
 .scene {
-    min-width: 800px;
-    min-height: 500px;
+    min-width: 820px;
+    min-height: 480px;
 
     background: rgb(162,191,194);
     background: linear-gradient(360deg, rgba(162,191,194,1) 0%, rgba(211,244,183,1) 29%, rgba(146,213,181,1) 69%, rgba(64,200,228,1) 94%);
@@ -48,6 +48,7 @@ body {
     justify-content: space-between;
 }
 .healthbar-container {
+    display: flex;
     padding-top: 2px;
     padding-bottom: 2px;
     margin-top: 3px;
@@ -65,11 +66,10 @@ body {
 /* Move position of the player's health bar and stage */
 #player-health {
     margin-left: 100px;
-    margin-top: 140px;
+    margin-top: 180px;
 }
 #player-area {
     margin-left: 50px;
-    margin-top: 90px;
 }
 #player-area img {
     width: 120px;
@@ -83,7 +83,7 @@ body {
     margin-top: 50px;
 }
 #enemy-area {
-    margin-top: 120px;
+    margin-top: 60px;
     margin-left: 60px;
 }
 #enemy-area img {
@@ -91,6 +91,18 @@ body {
     height: auto;
     margin-left: 100px;
 }
+
+
+/* Style the healthbar and alter its lenght depending on the player's score */
+#enemy-healthbar, #player-healthbar {
+    width: 160px;
+    height: 15px;
+    background-color: rgb(44, 237, 44);
+    border-radius: 20px;
+    margin-top: 2px;
+    margin-left: 5px;
+}
+
 
 
 /* Style for the area where the player sprite will stand */
@@ -106,27 +118,40 @@ body {
 
 /* Style for the moveset */
 .button-container {
+    background-color: rgb(75, 26, 26);
+    padding: 10px 10px;
+}
+.button-border {
     display: flex;
     width: 800px;
-    height: 120px;
-    border: solid;
+    height: 130px;
 }
 #moves  {
+    background-color: white;
+    border: 5px solid rgb(160, 24, 209);
+    border-radius: 10px;
     display: flex;
-    padding: 30px 40px;
+    padding: 15px 30px;
 }
 .left, .right {
     display: flex;
     flex-direction: column;
 }
 #moves button {
-    margin-left: 30px;
-    margin-right: 30px;
+    font-family: inherit;
+    margin: 8px 30px;
+    font-size: 20px;
+    border: none;
+}
+#moves button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 .right p {
     padding: 0;
     margin: 0;
+    margin-left: 30px;
 }
 .pp {
     border: solid;
+    
 }
