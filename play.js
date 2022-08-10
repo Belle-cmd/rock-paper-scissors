@@ -64,7 +64,10 @@ function UpdateScore(result) {
     }
 }
 
-function GameEnd() {
+/**
+ * Function checks if the computer and/or player has reached 5 points. If so, the game has ended
+ */
+function isGameEnd() {
     if ((playerScore===5) && (computerScore===5)) {
         console.log("Draw");
         computerScore = 0;
@@ -81,11 +84,14 @@ function GameEnd() {
 }
 
 
+const text = document.getElementById("text");
 const buttons = document.getElementById("moves").querySelectorAll('button');
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
-        let result = playRound(btn.textContent.toLowerCase(), getComputerChoice());
+        let compChoice = getComputerChoice();
+        text.textContent = `Player used ${btn.textContent.toLowerCase()}!\nFoe computer used ${compChoice}!`;
+        let result = playRound(btn.textContent.toLowerCase(), compChoice);
         UpdateScore(result);
-        GameEnd();
+        isGameEnd();
     });
 })

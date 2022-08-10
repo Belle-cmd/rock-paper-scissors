@@ -166,6 +166,7 @@ body {
 }
 #text {
     text-align: justify;
+    white-space: pre-line; /* enable text to wrap when necessary, and on line breaks*/
     padding-left: 16px;
     padding-right: 16px;
 }
