@@ -60,52 +60,7 @@ Output:
     The input rock, paper, or scissors from the user
 */
 function userInput() {
-    let input;
-    while (input == null) {
-        input = prompt("Your move? ").toLowerCase();
-        if ((input == "rock") || (input == "paper") || input == "scissors") {
-            return input;
-        } else {
-            input = null;
-        }
-    }
-}
 
-/*
-Function that plays 5 rounds, keep score, and reports the winner or loser at the end
-*/
-function game() {
-    console.log("Rock, paper, scissors! Commence battle!");
-    let counter = 0;
-    let playerScore = 0;
-    let computerScore = 0;
-    let outcome;
-    while (counter != 5) {
-        // retrieve inputs for player and computer
-        let player = userInput();
-        let computer = getComputerChoice();
-
-        // play a match and increment score
-        outcome = playRound(player, computer);
-        if (outcome == "win") {
-            playerScore++;
-        } else if (outcome == "lose") {
-            computerScore++;
-        }
-        
-        // output user input and computer's choice into console
-        console.log(
-            `You: ${player}\nComputer: ${computer}\n\nYour score: ${playerScore}\nComputer's Score: ${computerScore}`);
-        counter++;  // increment loop
-    }
-    
-    if (playerScore == computerScore) {
-        console.log("Draw! No one wins!")
-    } else if (playerScore > computerScore) {
-        console.log("You win!")
-    } else {
-        console.log("You lose!")
-    }
 }
 
 game();
