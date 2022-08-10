@@ -118,12 +118,14 @@ body {
 
 /* Style for the moveset */
 .button-container {
+    display: flex;
     background-color: rgb(75, 26, 26);
     padding: 10px 10px;
+    width: 800px;
 }
 .button-border {
     display: flex;
-    width: 800px;
+    width: 400px;
     height: 130px;
 }
 #moves  {
@@ -151,7 +153,19 @@ body {
     margin: 0;
     margin-left: 30px;
 }
-.pp {
-    border: solid;
-    
+
+
+/* Style the div where the game dialogue will be in */
+.text-container {
+    background-color: white;
+    border: 5px solid rgb(160, 24, 209);
+    border-radius: 10px;
+    width: 370px;
+    height: 120px;
+    margin-left: 10px;
+}
+#text {
+    text-align: justify;
+    padding-left: 16px;
+    padding-right: 16px;
 }
