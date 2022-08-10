@@ -1,5 +1,5 @@
 body {
-    font-family: "Rajdhani", sans-serif;
+    font-family: "Silkscreen", sans-serif;
   }
 
 .battle {
@@ -19,6 +19,8 @@ body {
     background: rgb(162,191,194);
     background: linear-gradient(360deg, rgba(162,191,194,1) 0%, rgba(211,244,183,1) 29%, rgba(146,213,181,1) 69%, rgba(64,200,228,1) 94%);
 }
+
+/* Style for poke health */
 .health {
     display: flex;
     flex-direction: column;
@@ -30,6 +32,8 @@ body {
     box-shadow: 5px 10px #888888;
 }
 .health p {
+    max-width: 276px;
+    max-height: 75px;
     margin: 0;
     padding: 0;
 }
@@ -55,6 +59,21 @@ body {
 }
 
 
+/* Style for the pokemon animal */
+.stage {
+    background:  rgb(166, 179, 185);
+    border-radius: 50%;
+    width: 300px;
+    height: 90px;
+    border: 14px solid rgb(188, 202, 207);
+    margin-left: 100px;
+    margin-top: 150px;
+}
+
+
+.player {
+    display: flex;
+}
 
 /* Style for the moveset */
 .button-container {
