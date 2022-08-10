@@ -52,6 +52,8 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+let computerHealth = document.getElementById("enemy-healthbar");
+let playerHealth = document.getElementById("player-healthbar");
 /**
  * Function increments playerScore or computerScore depending on a round's results.
  * @param {*} result 
@@ -59,8 +61,12 @@ function playRound(playerSelection, computerSelection) {
 function UpdateScore(result) {
     if (result === "win") {
         playerScore++;
+        let newWidth = computerHealth.offsetWidth - 32;
+        computerHealth.style.width = `${newWidth}px`;
     } else  {
         computerScore++;
+        let newWidth = playerHealth.offsetWidth - 32;
+        playerHealth.style.width = `${newWidth}px`;
     }
 }
 
@@ -70,16 +76,22 @@ function UpdateScore(result) {
 function isGameEnd() {
     if ((playerScore===5) && (computerScore===5)) {
         console.log("Draw");
-        computerScore = 0;
-        playerScore = 0;
+        // computerScore = 0;
+        // playerScore = 0;
+        // // computerHealth.style.width = "160px";
+        // // playerHealth.style.width = "160px";
     } else if ((playerScore===5) && (playerScore > computerScore)) {
         console.log("You win");
-        computerScore = 0;
-        playerScore = 0;
+        // computerScore = 0;
+        // playerScore = 0;
+        // computerHealth.style.width = "160px";
+        // playerHealth.style.width = "160px";
     } else if ((computerScore===5) && (computerScore > playerScore)) {
         console.log("You lose");
-        computerScore = 0;
-        playerScore = 0;
+        // computerScore = 0;
+        // playerScore = 0;
+        // computerHealth.style.width = "160px";
+        // playerHealth.style.width = "160px";
     }
 }
 
