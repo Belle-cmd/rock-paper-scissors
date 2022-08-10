@@ -1,3 +1,7 @@
+body {
+    font-family: "Rajdhani", sans-serif;
+  }
+
 .battle {
     display: flex;
     flex-direction: column;
@@ -16,19 +20,38 @@
     background: linear-gradient(360deg, rgba(162,191,194,1) 0%, rgba(211,244,183,1) 29%, rgba(146,213,181,1) 69%, rgba(64,200,228,1) 94%);
 }
 .health {
+    display: flex;
+    flex-direction: column;
     background-color: rgb(252, 244, 222);
-    width: 300px;
-    min-height: 80px;
+    width: 270px;
+    min-height: 68px;
     border-radius: 20px;
     border: 3px solid black;
     box-shadow: 5px 10px #888888;
 }
+.health p {
+    margin: 0;
+    padding: 0;
+}
 .label {
     display: flex;
-    margin-left: 20px;
+    margin-top: 10px;
+    margin-left: 15px;
     margin-right: 20px;
     justify-content: space-between;
-    
+}
+.healthbar-container {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 3px;
+    margin-left: 40px;
+    margin-right: 20px;
+    background-color: #828080;
+    border-radius: 20px;
+}
+.healthbar-container p {
+    margin-left: 15px;
+    color: rgb(255, 221, 29);
 }
 
 
