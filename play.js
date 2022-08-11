@@ -1,6 +1,7 @@
 "use strict";
 let playerScore = 0;
 let computerScore = 0;
+let gameOutcome = "";  // outcome of a game (false = you lose, true = you win)
 
 let compHealthPanel = document.getElementById("enemy-health");
 let playerHealthPanel = document.getElementById("player-health");
@@ -10,6 +11,7 @@ let bannerTop = document.getElementById("banner-top");
 let bannerBottom = document.getElementById("banner-bottom");
 const text = document.getElementById("text");
 const buttons = document.getElementById("moves").querySelectorAll('button');
+const gameOutcomeID = document.getElementById("game-result");
 
 
 
@@ -93,12 +95,15 @@ function UpdateScore(result) {
 function EndGameStatus() {
     if ((playerScore===5) && (computerScore===5)) {
         text.textContent = "The battle ends with a draw! Both creatures survive!";
+        gameOutcome = "Draw";
         return true;
     } else if ((playerScore===5) && (playerScore > computerScore)) {
         text.textContent = "Foe has fainted! Player defeated COMPUTER!"
+        gameOutcome = "Winner";
         return true;
     } else if ((computerScore===5) && (computerScore > playerScore)) {
         text.textContent = "You have no more creature that can fight! You lost $500!";
+        gameOutcome = "Loser";
         return true;
     } else {
         return false;
@@ -125,8 +130,26 @@ function RestartGame() {
     text.textContent = "Foe wants to fight!";
 
     StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right");
+
+    // delete all childnodes (message, button) of the screen showing the game's outcome
+    // so that it can be rewritten by the new game's outcome
+    while (gameOutcomeID.firstChild) {
+        gameOutcomeID.removeChild(gameOutcomeID.lastChild);
+    }
+    gameOutcomeID.classList.remove("game-result");  // remove css style to hide the game end screen
 }
 
+function ShowResult() {
+    gameOutcomeID.classList.add("game-result");
+
+    const message = document.createElement("h1");
+    message.textContent = gameOutcome + "!";
+    const retryBtn = document.createElement("button");
+    retryBtn.textContent = "Play Again";
+    retryBtn.addEventListener("click", () => {RestartGame();});
+    gameOutcomeID.appendChild(message);
+    gameOutcomeID.appendChild(retryBtn);
+}
 
 
 // What runs when the game starts
@@ -142,8 +165,8 @@ buttons.forEach((btn) => {
         let result = playRound(btn.textContent.toLowerCase(), compChoice);
         
         UpdateScore(result);
-        EndGameStatus();
-
-        // RestartGame();
+        if (EndGameStatus()) {
+            ShowResult();
+        }
     });
 })

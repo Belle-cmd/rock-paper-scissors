@@ -218,3 +218,18 @@ body {
     from {transform: translateY(360px);}
     to {transform: translateY(720px);}
 }
+
+
+/* Style for the game's winner/loser screen */
+.game-result {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(42, 41, 41));
+    width: 820px;
+    height: 800px;
+
+    text-align: center;
+    color: white;
+    font-size: 20px;
+}
