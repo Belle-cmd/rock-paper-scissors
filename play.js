@@ -88,7 +88,7 @@ function UpdateScore(result) {
  * Function checks if the computer and/or player has reached 5 points. If so, the game has ended.
   * Returns boolean indicating the game's end
  */
-function EndGameText() {
+function EndGameStatus() {
     if ((playerScore===5) && (computerScore===5)) {
         text.textContent = "The battle ends with a draw! Both creatures survive!";
         return true;
@@ -137,7 +137,7 @@ buttons.forEach((btn) => {
         let result = playRound(btn.textContent.toLowerCase(), compChoice);
         
         UpdateScore(result);
-        EndGameText();  //  Checks if game has ended, updates text
+        EndGameStatus();
 
         // RestartGame();
     });
