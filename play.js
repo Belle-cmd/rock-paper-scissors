@@ -43,20 +43,26 @@ Output:
 */
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-        return "Draw";
+        text.textContent += "\nIt had no effect!";
+        return "draw";
     } else if ((playerSelection=="paper") && (computerSelection=="rock")) {
+        text.textContent += "\n It's super effective! Foe takes damage!";
         return "win";
     } else if ((playerSelection=="paper") && (computerSelection=="scissors")) {
+        text.textContent += "\n It wasn't very effective! Player takes damage!";
         return "lose";
 
     } else if ((playerSelection=="rock") && (computerSelection=="scissors")) {
+        text.textContent += "\n It's super effective! Foe takes damage!";
         return "win";
     } else if ((playerSelection=="rock") && (computerSelection=="paper")) {
+        text.textContent += "\n It wasn't very effective! Player takes damage!";
         return "lose";
-
     } else if ((playerSelection=="scissors") && (computerSelection=="paper")) {
+        text.textContent += "\n It's super effective! Foe takes damage!";
         return "win";
     } else {
+        text.textContent += "\n It wasn't very effective! Player takes damage!";
         return "lose";
     }
 }
@@ -71,7 +77,7 @@ function UpdateScore(result) {
         playerScore++;
         let newWidth = computerHealth.offsetWidth - 32;
         computerHealth.style.width = `${newWidth}px`;
-    } else  {
+    } else if (result === "lose")  {
         computerScore++;
         let newWidth = playerHealth.offsetWidth - 32;
         playerHealth.style.width = `${newWidth}px`;
@@ -82,15 +88,15 @@ function UpdateScore(result) {
  * Function checks if the computer and/or player has reached 5 points. If so, the game has ended.
   * Returns boolean indicating the game's end
  */
-function isGameEnd() {
+function EndGameText() {
     if ((playerScore===5) && (computerScore===5)) {
-        console.log("Draw");
+        text.textContent = "The battle ends with a draw! Both creatures survive!";
         return true;
     } else if ((playerScore===5) && (playerScore > computerScore)) {
-        console.log("You win");
+        text.textContent = "Foe has fainted! Player defeated COMPUTER!"
         return true;
     } else if ((computerScore===5) && (computerScore > playerScore)) {
-        console.log("You lose");
+        text.textContent = "You have no more creature that can fight! You lost $500!";
         return true;
     } else {
         return false;
@@ -108,15 +114,18 @@ function healthBarAnimation() {
 
 }
 
+healthBarAnimation();  // start animation as soon as the game loads
 
 function RestartGame() {
     computerScore = 0;
     playerScore = 0;
     computerHealth.style.width = "160px";
     playerHealth.style.width = "160px";
+    playerHealth.style.backgroundColor = "rgb(44, 237, 44)";  // green
+    computerHealth.style.backgroundColor = "rgb(44, 237, 44)";
+    text.textContent = "Foe wants to fight!";
 
     healthBarAnimation();  // trigger animation
-
 }
 
 
@@ -128,8 +137,8 @@ buttons.forEach((btn) => {
         let result = playRound(btn.textContent.toLowerCase(), compChoice);
         
         UpdateScore(result);
-        if (isGameEnd()) {
-            RestartGame();
-        }
+        EndGameText();  //  Checks if game has ended, updates text
+
+        // RestartGame();
     });
 })
