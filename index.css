@@ -1,13 +1,15 @@
 body {
     font-family: "Silkscreen", sans-serif;
-  }
-
-.battle {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0;
+  }
+
+.battle {
     overflow: hidden;
+    position: relative;  /* used to overlay the banner on top of the battle area */
 }
 
 
@@ -188,4 +190,31 @@ body {
 @keyframes right {
     from {left: 60px;}
     to { left: 0px;}
+}
+
+
+/* Style for the banner that transitions into the battle area, before the actual battle starts */
+.banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+ .top, .bottom {
+    display: flex;
+    flex-direction: column;
+    position: inherit;
+    background-color: black;
+    width: 820px;
+    height: 360px;
+}
+.top {animation: open-top 3s 1;}
+.bottom {animation: open-bottom 3s 1;}
+
+@keyframes open-top {
+    from {transform: translateY(0);}
+    to {transform: translateY(-360px);}
+}
+@keyframes open-bottom {
+    from {transform: translateY(360px);}
+    to {transform: translateY(720px);}
 }

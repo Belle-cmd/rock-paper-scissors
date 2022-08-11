@@ -6,6 +6,8 @@ let compHealthPanel = document.getElementById("enemy-health");
 let playerHealthPanel = document.getElementById("player-health");
 let computerHealth = document.getElementById("enemy-healthbar");
 let playerHealth = document.getElementById("player-healthbar");
+let bannerTop = document.getElementById("banner-top");
+let bannerBottom = document.getElementById("banner-bottom");
 const text = document.getElementById("text");
 const buttons = document.getElementById("moves").querySelectorAll('button');
 
@@ -103,18 +105,15 @@ function EndGameStatus() {
     }
 }
 
-function healthBarAnimation() {
-    compHealthPanel.classList.add("slide-left");
-    playerHealthPanel.classList.add("slide-right");
+function StartAnimation(element1, class1, element2, class2, seconds) {
+    element1.classList.add(class1);
+    element2.classList.add(class2);
 
     setTimeout(() => {
-        compHealthPanel.classList.remove("slide-left");
-        playerHealthPanel.classList.remove("slide-right");
-    }, 5000);
-
+        element1.classList.remove(class1);
+        element2.classList.remove(class2);
+    }, seconds);
 }
-
-healthBarAnimation();  // start animation as soon as the game loads
 
 function RestartGame() {
     computerScore = 0;
@@ -125,10 +124,16 @@ function RestartGame() {
     computerHealth.style.backgroundColor = "rgb(44, 237, 44)";
     text.textContent = "Foe wants to fight!";
 
-    healthBarAnimation();  // trigger animation
+    StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right");
 }
 
 
+
+// What runs when the game starts
+
+// start animation as soon as the game loads
+StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right", 5000);
+StartAnimation(bannerTop, "top", bannerBottom, "bottom", 3000);
 
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
