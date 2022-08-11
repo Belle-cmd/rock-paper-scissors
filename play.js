@@ -9,6 +9,8 @@ let computerHealth = document.getElementById("enemy-healthbar");
 let playerHealth = document.getElementById("player-healthbar");
 let bannerTop = document.getElementById("banner-top");
 let bannerBottom = document.getElementById("banner-bottom");
+const computerArea = document.getElementById("enemy-area");
+const playerArea = document.getElementById("player-area");
 const text = document.getElementById("text");
 const buttons = document.getElementById("moves").querySelectorAll('button');
 const gameOutcomeID = document.getElementById("game-result");
@@ -129,7 +131,8 @@ function RestartGame() {
     computerHealth.style.backgroundColor = "rgb(44, 237, 44)";
     text.textContent = "Foe wants to fight!";
 
-    StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right");
+    StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right", 5000);
+    StartAnimation(computerArea, "slide-right", playerArea, "slide-left", 4000)
 
     // delete all childnodes (message, button) of the screen showing the game's outcome
     // so that it can be rewritten by the new game's outcome
@@ -167,8 +170,9 @@ function UpdateHealthColour() {
 }
 
 // start animation as soon as the game loads
-StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right", 5000);
 StartAnimation(bannerTop, "top", bannerBottom, "bottom", 3000);
+StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right", 5000);
+StartAnimation(computerArea, "slide-right", playerArea, "slide-left", 4000)
 
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
