@@ -152,7 +152,19 @@ function ShowResult() {
 }
 
 
-// What runs when the game starts
+function UpdateHealthColour() {
+    if ((computerHealth.offsetWidth <= 96) && (computerHealth.offsetWidth > 32)) {
+        computerHealth.style.backgroundColor = "#fadf2f";  // yellow
+    } else if (computerHealth.offsetWidth <= 32) {
+        computerHealth.style.backgroundColor = "#ed231c";
+    }
+    
+    if ((playerHealth.offsetWidth <= 96) && (playerHealth.offsetWidth > 32)) {
+        playerHealth.style.backgroundColor = "#fadf2f";  // yellow
+    } else if (playerHealth.offsetWidth <= 32) {
+        playerHealth.style.backgroundColor = "#ed231c";
+    }
+}
 
 // start animation as soon as the game loads
 StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right", 5000);
@@ -165,6 +177,7 @@ buttons.forEach((btn) => {
         let result = playRound(btn.textContent.toLowerCase(), compChoice);
         
         UpdateScore(result);
+        UpdateHealthColour();
         if (EndGameStatus()) {
             ShowResult();
         }
