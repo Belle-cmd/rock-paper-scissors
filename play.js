@@ -149,6 +149,7 @@ function ShowResult() {
     message.textContent = gameOutcome + "!";
     const retryBtn = document.createElement("button");
     retryBtn.textContent = "Play Again";
+    retryBtn.classList.add("play-again");
     retryBtn.addEventListener("click", () => {RestartGame();});
     gameOutcomeID.appendChild(message);
     gameOutcomeID.appendChild(retryBtn);
