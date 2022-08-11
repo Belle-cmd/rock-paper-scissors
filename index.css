@@ -233,3 +233,21 @@ body {
     color: white;
     font-size: 20px;
 }
+
+/* Style for the player's healthbar exp */
+.exp-container {
+    display: flex;
+    margin-left: 20px;
+}
+.exp-container p {
+    font-size: 11px;
+    color: rgb(255, 221, 29);
+    margin: 0;
+    padding: 0;
+}
+.exp {
+    background-color: #34ebd8;
+    width: 110px;
+    height: 6px;
+    margin-top: 4px;
+}

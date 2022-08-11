@@ -170,9 +170,12 @@ function UpdateHealthColour() {
 }
 
 // start animation as soon as the game loads
-StartAnimation(bannerTop, "top", bannerBottom, "bottom", 3000);
-StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right", 5000);
-StartAnimation(computerArea, "slide-right", playerArea, "slide-left", 4000)
+window.onload = (event) => {
+    StartAnimation(bannerTop, "top", bannerBottom, "bottom", 3000);
+    StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right", 5000);
+    StartAnimation(computerArea, "slide-right", playerArea, "slide-left", 4000) 
+};
+
 
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
