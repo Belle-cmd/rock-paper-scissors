@@ -264,3 +264,8 @@ body {
     0%, 100% {transform: translateY(40px);}
     50% {transform: translateY(80px);}
 }
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
