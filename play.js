@@ -14,6 +14,8 @@ const playerArea = document.getElementById("player-area");
 const text = document.getElementById("text");
 const buttons = document.getElementById("moves").querySelectorAll('button');
 const gameOutcomeID = document.getElementById("game-result");
+const playerAttackImgID = document.getElementById("player-attack-img");
+const compAttackImgID = document.getElementById("enemy-attack-img");
 
 
 
@@ -131,6 +133,9 @@ function RestartGame() {
     computerHealth.style.backgroundColor = "rgb(44, 237, 44)";
     text.textContent = "Foe wants to fight!";
 
+    playerAttackImgID.style.visibility = "hidden";  // hide the attack image of the sprites
+    compAttackImgID.style.visibility = "hidden";
+
     StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right", 5000);
     StartAnimation(computerArea, "slide-right", playerArea, "slide-left", 4000)
 
@@ -178,10 +183,20 @@ window.onload = (event) => {
 };
 
 
+function showAttack(playerMove, compMove) {
+    playerAttackImgID.src = `/img/${playerMove}.png`;
+    playerAttackImgID.style.visibility = "visible";
+
+    compAttackImgID.src = `/img/${compMove}.png`;
+    compAttackImgID.style.visibility = "visible";
+}
+
+
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
         let compChoice = getComputerChoice();
         text.textContent = `Player used ${btn.textContent.toLowerCase()}!\nFoe computer used ${compChoice}!`;
+        showAttack(btn.textContent.toLowerCase(), compChoice);
         let result = playRound(btn.textContent.toLowerCase(), compChoice);
         
         UpdateScore(result);

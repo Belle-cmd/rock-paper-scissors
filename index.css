@@ -13,6 +13,27 @@ body {
 }
 
 
+/* Style and animation on animals' attacks (rock, paper, scissors) */
+.enemy-attack, .player-attack {
+    position: relative; /* for the enemy and player attack */
+}
+.enemy-attack  img {
+    visibility: hidden;
+    position: absolute;
+    top: 270px;
+    left: 420px;
+    width: 100px;
+    height: 100px;
+}
+.player-attack img {
+    visibility: hidden;
+    position: absolute;
+    top: 20px;
+    left: 280px;
+    width: 100px;
+    height: 100px;
+}
+
 
 /* Style for the animal battle */
 .scene {
@@ -86,7 +107,7 @@ body {
     margin-top: 50px;
 }
 #enemy-area {
-    margin-top: 60px;
+    margin-top: 40px;
     margin-left: 60px;
 }
 #enemy-area img {
@@ -266,6 +287,7 @@ body {
 }
 
 h1 {
-    margin-top: 10px;
+    margin: 0;
+    padding: 0;
     margin-bottom: 10px;
 }
