@@ -255,3 +255,12 @@ body {
     height: 6px;
     margin-top: 4px;
 }
+
+#enemy-sprite {
+    animation: creature 1.8s infinite;
+}
+#player-sprite {animation: creature 2s infinite;}
+@keyframes creature {
+    0%, 100% {transform: translateY(40px);}
+    50% {transform: translateY(80px);}
+}
