@@ -16,6 +16,8 @@ const buttons = document.getElementById("moves").querySelectorAll('button');
 const gameOutcomeID = document.getElementById("game-result");
 const playerAttackImgID = document.getElementById("player-attack-img");
 const compAttackImgID = document.getElementById("enemy-attack-img");
+const playerMovementID = document.getElementById("player-sprite");  // triggers breathing/faint animation
+const compMovementID = document.getElementById("enemy-sprite");
 
 
 
@@ -104,10 +106,14 @@ function EndGameStatus() {
     } else if ((playerScore===5) && (playerScore > computerScore)) {
         text.textContent = "Foe has fainted! Player defeated COMPUTER!"
         gameOutcome = "Winner";
+        compMovementID.classList.remove("enemy-breathe");
+        compMovementID.classList.add("faint");
         return true;
     } else if ((computerScore===5) && (computerScore > playerScore)) {
         text.textContent = "You have no more creature that can fight! You lost $500!";
         gameOutcome = "Loser";
+        playerMovementID.classList.remove("player-breathe");
+        playerMovementID.classList.add("faint");
         return true;
     } else {
         return false;
@@ -135,6 +141,11 @@ function RestartGame() {
 
     playerAttackImgID.style.visibility = "hidden";  // hide the attack image of the sprites
     compAttackImgID.style.visibility = "hidden";
+
+    compMovementID.classList.remove("faint");
+    compMovementID.classList.add("enemy-breathe");
+    playerMovementID.classList.remove("faint");
+    playerMovementID.classList.add("player-breathe");
 
     StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right", 5000);
     StartAnimation(computerArea, "slide-right", playerArea, "slide-left", 4000)

@@ -278,17 +278,38 @@ body {
     margin-top: 4px;
 }
 
-#enemy-sprite {
-    animation: creature 1.8s infinite;
+
+/* This style is applied while the sprite still has HP left */
+.enemy-breathe {
+    animation: breathing 1.8s infinite;
 }
-#player-sprite {animation: creature 2s infinite;}
-@keyframes creature {
+.player-breathe {animation: breathing 2s infinite;}
+@keyframes breathing {
     0%, 100% {transform: translateY(40px);}
     50% {transform: translateY(80px);}
 }
 
+
+
+/* Style for the title */
 h1 {
     margin: 0;
     padding: 0;
     margin-bottom: 10px;
+}
+
+
+
+/* This class gets added to a sprite when they lose. It gets removed when restarting the game */
+.faint {
+    animation: faint 2s 1;
+    animation-fill-mode: forwards;  /* Keeps faint's last keyframe (translation & opacity remains) */
+    
+}
+@keyframes faint {
+    from {transform: translateY(0);}
+    to {
+        transform: translateY(140px) rotate(100deg);
+        opacity: 50%;
+    }
 }
