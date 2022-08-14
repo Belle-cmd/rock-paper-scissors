@@ -21,14 +21,11 @@ const compMovementID = document.getElementById("enemy-sprite");
 
 
 
-/*
-Function that randomly returns either "Rock", "Paper" or "Scissors".
-This acts as the computer's play.
-Input: 
-    None
-Output: 
-    String output "Rock", "Paper", or "Scissors"
-*/
+/**
+ * This function randomly returns either "Rock", "Paper" or "Scissors". 
+ * This acts as the computer's play.
+ * @returns String output "Rock", "Paper", or "Scissors"
+ */
 function getComputerChoice() {
     let randomInt = Math.floor(Math.random()*100);  // generates a number from 0-99
 
@@ -43,44 +40,44 @@ function getComputerChoice() {
 }
 
 
-/*
-Function that plays a single round of Rock Paper Scissors.
-Input:
-    playerSelection - the user's input
-    computerSelection - computer's turn
-Output: 
-    string indicating if the player wins or loses
-*/
+
+/**
+ * Function that plays a single round of Rock Paper Scissors.
+ * @param {*} playerSelection   the user's input
+ * @param {*} computerSelection computer's turn
+ * @returns string indicating if the player wins or loses
+ */
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-        text.textContent += "\nIt had no effect!";
+        text.textContent += "\n\nIt had no effect!";
         return "draw";
     } else if ((playerSelection=="paper") && (computerSelection=="rock")) {
-        text.textContent += "\n It's super effective! Foe takes damage!";
+        text.textContent += "\n It's super effective!\nFoe takes damage!";
         return "win";
     } else if ((playerSelection=="paper") && (computerSelection=="scissors")) {
-        text.textContent += "\n It wasn't very effective! Player takes damage!";
+        text.textContent += "\n It wasn't very effective!\nPlayer takes damage!";
         return "lose";
 
     } else if ((playerSelection=="rock") && (computerSelection=="scissors")) {
-        text.textContent += "\n It's super effective! Foe takes damage!";
+        text.textContent += "\n It's super effective!\nFoe takes damage!";
         return "win";
     } else if ((playerSelection=="rock") && (computerSelection=="paper")) {
-        text.textContent += "\n It wasn't very effective! Player takes damage!";
+        text.textContent += "\n It wasn't very effective!\nPlayer takes damage!";
         return "lose";
     } else if ((playerSelection=="scissors") && (computerSelection=="paper")) {
-        text.textContent += "\n It's super effective! Foe takes damage!";
+        text.textContent += "\n It's super effective!\nFoe takes damage!";
         return "win";
     } else {
-        text.textContent += "\n It wasn't very effective! Player takes damage!";
+        text.textContent += "\n It wasn't very effective!\nPlayer takes damage!";
         return "lose";
     }
 }
 
 
+
 /**
  * Function increments playerScore or computerScore depending on a round's results.
- * @param {*} result 
+ * @param {*} result    outcome of a round
  */
 function UpdateScore(result) {
     if (result === "win") {
@@ -94,16 +91,14 @@ function UpdateScore(result) {
     }
 }
 
+
+
 /**
  * Function checks if the computer and/or player has reached 5 points. If so, the game has ended.
   * Returns boolean indicating the game's end
  */
 function EndGameStatus() {
-    if ((playerScore===5) && (computerScore===5)) {
-        text.textContent = "The battle ends with a draw! Both creatures survive!";
-        gameOutcome = "Draw";
-        return true;
-    } else if ((playerScore===5) && (playerScore > computerScore)) {
+    if ((playerScore===5) && (playerScore > computerScore)) {
         text.textContent = "Foe has fainted! Player defeated COMPUTER!"
         gameOutcome = "Winner";
         compMovementID.classList.remove("enemy-breathe");
@@ -120,6 +115,16 @@ function EndGameStatus() {
     }
 }
 
+
+
+/**
+ * Function that add and remove css classes that play animations.
+ * @param {*} element1  DOM element to alter
+ * @param {*} class1    css class to add/remove to element1
+ * @param {*} element2  DOM element to alter
+ * @param {*} class2    css class to add/remove to element2
+ * @param {*} seconds   time duration the program should wait before removing a class from its element
+ */
 function StartAnimation(element1, class1, element2, class2, seconds) {
     element1.classList.add(class1);
     element2.classList.add(class2);
@@ -130,6 +135,92 @@ function StartAnimation(element1, class1, element2, class2, seconds) {
     }, seconds);
 }
 
+
+
+/**
+ * This function adds HTML elements describing the result of the game (i.e. If the player wins or loses).
+ * It also adds a "play again" button to let users replay the program.
+ */
+function ShowResult() {
+    gameOutcomeID.classList.add("game-result");
+
+    const message = document.createElement("h1");
+    message.textContent = gameOutcome + "!";
+    const retryBtn = document.createElement("button");
+    retryBtn.textContent = "Play Again";
+    retryBtn.classList.add("play-again");
+    retryBtn.addEventListener("click", () => {RestartGame();});
+    gameOutcomeID.appendChild(message);
+    gameOutcomeID.appendChild(retryBtn);
+}
+
+
+
+/**
+ * This function changes the colour of the healthbar depending on the div's current width
+ */
+function UpdateHealthColour() {
+    if ((computerHealth.offsetWidth <= 96) && (computerHealth.offsetWidth > 32)) {
+        computerHealth.style.backgroundColor = "#fadf2f";  // yellow
+    } else if (computerHealth.offsetWidth <= 32) {
+        computerHealth.style.backgroundColor = "#ed231c";
+    }
+    
+    if ((playerHealth.offsetWidth <= 96) && (playerHealth.offsetWidth > 32)) {
+        playerHealth.style.backgroundColor = "#fadf2f";  // yellow
+    } else if (playerHealth.offsetWidth <= 32) {
+        playerHealth.style.backgroundColor = "#ed231c";
+    }
+}
+
+
+
+/**
+ * This function hides/shows the attack the user and the computer chooses to do, into the scene.
+ * It retrieves the image that matches their move.
+ * @param {*} playerMove    player's attack (either rock, paper, scissors)
+ * @param {*} compMove      computer's attack (either rock, paper, scissors)
+ */
+function showAttack(playerMove, compMove) {
+    playerAttackImgID.src = `/img/${playerMove}.png`;
+    playerAttackImgID.style.visibility = "visible";
+
+    compAttackImgID.src = `/img/${compMove}.png`;
+    compAttackImgID.style.visibility = "visible";
+}
+
+
+
+// start animation as soon as the game loads
+window.onload = (event) => {
+    StartAnimation(bannerTop, "top", bannerBottom, "bottom", 3000);
+    StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right", 5000);
+    StartAnimation(computerArea, "slide-right", playerArea, "slide-left", 4000) 
+};
+
+
+
+buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        let compChoice = getComputerChoice();
+        text.textContent = `Player used ${btn.textContent.toLowerCase()}!\nFoe computer used ${compChoice}!`;
+        showAttack(btn.textContent.toLowerCase(), compChoice);
+        let result = playRound(btn.textContent.toLowerCase(), compChoice);
+        
+        UpdateScore(result);
+        UpdateHealthColour();
+        if (EndGameStatus()) {
+            ShowResult();
+        }
+    });
+})
+
+
+
+/**
+ * Function runs when user clicks "play again" button. This function restarts all values
+ * needed to replay the game, including css animations.
+ */
 function RestartGame() {
     computerScore = 0;
     playerScore = 0;
@@ -157,63 +248,3 @@ function RestartGame() {
     }
     gameOutcomeID.classList.remove("game-result");  // remove css style to hide the game end screen
 }
-
-function ShowResult() {
-    gameOutcomeID.classList.add("game-result");
-
-    const message = document.createElement("h1");
-    message.textContent = gameOutcome + "!";
-    const retryBtn = document.createElement("button");
-    retryBtn.textContent = "Play Again";
-    retryBtn.classList.add("play-again");
-    retryBtn.addEventListener("click", () => {RestartGame();});
-    gameOutcomeID.appendChild(message);
-    gameOutcomeID.appendChild(retryBtn);
-}
-
-
-function UpdateHealthColour() {
-    if ((computerHealth.offsetWidth <= 96) && (computerHealth.offsetWidth > 32)) {
-        computerHealth.style.backgroundColor = "#fadf2f";  // yellow
-    } else if (computerHealth.offsetWidth <= 32) {
-        computerHealth.style.backgroundColor = "#ed231c";
-    }
-    
-    if ((playerHealth.offsetWidth <= 96) && (playerHealth.offsetWidth > 32)) {
-        playerHealth.style.backgroundColor = "#fadf2f";  // yellow
-    } else if (playerHealth.offsetWidth <= 32) {
-        playerHealth.style.backgroundColor = "#ed231c";
-    }
-}
-
-// start animation as soon as the game loads
-window.onload = (event) => {
-    StartAnimation(bannerTop, "top", bannerBottom, "bottom", 3000);
-    StartAnimation(compHealthPanel, "slide-left", playerHealthPanel, "slide-right", 5000);
-    StartAnimation(computerArea, "slide-right", playerArea, "slide-left", 4000) 
-};
-
-
-function showAttack(playerMove, compMove) {
-    playerAttackImgID.src = `/img/${playerMove}.png`;
-    playerAttackImgID.style.visibility = "visible";
-
-    compAttackImgID.src = `/img/${compMove}.png`;
-    compAttackImgID.style.visibility = "visible";
-}
-
-
-buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-        let compChoice = getComputerChoice();
-        text.textContent = `Player used ${btn.textContent.toLowerCase()}!\nFoe computer used ${compChoice}!`;
-        showAttack(btn.textContent.toLowerCase(), compChoice);
-        let result = playRound(btn.textContent.toLowerCase(), compChoice);
-        
-        UpdateScore(result);
-        UpdateHealthColour();
-        if (EndGameStatus()) {
-            ShowResult();
-        }
-    });
-})
