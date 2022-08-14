@@ -182,10 +182,10 @@ function UpdateHealthColour() {
  * @param {*} compMove      computer's attack (either rock, paper, scissors)
  */
 function showAttack(playerMove, compMove) {
-    playerAttackImgID.src = `/img/${playerMove}.png`;
+    playerAttackImgID.src = `img/${playerMove}.png`;
     playerAttackImgID.style.visibility = "visible";
 
-    compAttackImgID.src = `/img/${compMove}.png`;
+    compAttackImgID.src = `img/${compMove}.png`;
     compAttackImgID.style.visibility = "visible";
 }
 
