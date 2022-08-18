@@ -11,7 +11,7 @@ Concepts I practiced in this project:
 - git commit message conventions
 
 Artworks:
-- animal sprites by [Rebecca](https://github.com/Rabecca-r?tab=repositories)
+- animal sprites by [Kenny](https://kenney.nl/)
 - rock.png by [OpenClipart-Vectors](https://pixabay.com/users/openclipart-vectors-30363/)
 - paper.png by [OpenIcons](https://pixabay.com/users/openicons-28911/)
 - scissors.png by [Clker-Free-Vector-Images](https://pixabay.com/users/clker-free-vector-images-3736/)
