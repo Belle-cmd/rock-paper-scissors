@@ -51,24 +51,13 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         text.textContent += "\n\nIt had no effect!";
         return "draw";
-    } else if ((playerSelection=="paper") && (computerSelection=="rock")) {
-        text.textContent += "\n It's super effective!\nFoe takes damage!";
-        return "win";
-    } else if ((playerSelection=="paper") && (computerSelection=="scissors")) {
-        text.textContent += "\n It wasn't very effective!\nPlayer takes damage!";
-        return "lose";
-
-    } else if ((playerSelection=="rock") && (computerSelection=="scissors")) {
-        text.textContent += "\n It's super effective!\nFoe takes damage!";
-        return "win";
-    } else if ((playerSelection=="rock") && (computerSelection=="paper")) {
-        text.textContent += "\n It wasn't very effective!\nPlayer takes damage!";
-        return "lose";
-    } else if ((playerSelection=="scissors") && (computerSelection=="paper")) {
-        text.textContent += "\n It's super effective!\nFoe takes damage!";
+    } else if ((playerSelection=="paper") && (computerSelection=="rock") || 
+        (playerSelection=="rock") && (computerSelection=="scissors") || 
+        (playerSelection=="scissors") && (computerSelection=="paper")) {
+        text.textContent += "\n\n It's super effective!\nEnemy takes damage!";
         return "win";
     } else {
-        text.textContent += "\n It wasn't very effective!\nPlayer takes damage!";
+        text.textContent += "\n\n It wasn't very effective!\nPlayer takes damage!";
         return "lose";
     }
 }
