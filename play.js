@@ -54,7 +54,7 @@ function playRound(playerSelection, computerSelection) {
     } else if ((playerSelection=="paper") && (computerSelection=="rock") || 
         (playerSelection=="rock") && (computerSelection=="scissors") || 
         (playerSelection=="scissors") && (computerSelection=="paper")) {
-        text.textContent += "\n\n It's super effective!\COMPUTER takes damage!";
+        text.textContent += "\n\n It's super effective!\nCOMPUTER takes damage!";
         return "win";
     } else {
         text.textContent += "\n\n It wasn't very effective!\nPLAYER takes damage!";
@@ -88,13 +88,13 @@ function UpdateScore(result) {
  */
 function EndGameStatus() {
     if ((playerScore===5) && (playerScore > computerScore)) {
-        text.textContent = "Foe COMPUTER has fainted! PLAYER defeated COMPUTER!"
+        text.textContent = "Foe COMPUTER has fainted!\nPLAYER defeated COMPUTER!"
         gameOutcome = "Winner";
         compMovementID.classList.remove("enemy-breathe");
         compMovementID.classList.add("faint");
         return true;
     } else if ((computerScore===5) && (computerScore > playerScore)) {
-        text.textContent = "You have no more creature that can fight! You lost $500!";
+        text.textContent = "You have no more creature that can fight!\n\nYou lost $500!";
         gameOutcome = "Loser";
         playerMovementID.classList.remove("player-breathe");
         playerMovementID.classList.add("faint");
