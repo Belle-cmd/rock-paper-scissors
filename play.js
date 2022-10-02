@@ -54,10 +54,10 @@ function playRound(playerSelection, computerSelection) {
     } else if ((playerSelection=="paper") && (computerSelection=="rock") || 
         (playerSelection=="rock") && (computerSelection=="scissors") || 
         (playerSelection=="scissors") && (computerSelection=="paper")) {
-        text.textContent += "\n\n It's super effective!\nEnemy takes damage!";
+        text.textContent += "\n\n It's super effective!\COMPUTER takes damage!";
         return "win";
     } else {
-        text.textContent += "\n\n It wasn't very effective!\nPlayer takes damage!";
+        text.textContent += "\n\n It wasn't very effective!\nPLAYER takes damage!";
         return "lose";
     }
 }
@@ -88,7 +88,7 @@ function UpdateScore(result) {
  */
 function EndGameStatus() {
     if ((playerScore===5) && (playerScore > computerScore)) {
-        text.textContent = "Foe has fainted! Player defeated COMPUTER!"
+        text.textContent = "Foe COMPUTER has fainted! PLAYER defeated COMPUTER!"
         gameOutcome = "Winner";
         compMovementID.classList.remove("enemy-breathe");
         compMovementID.classList.add("faint");
@@ -192,7 +192,7 @@ window.onload = (event) => {
 buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
         let compChoice = getComputerChoice();
-        text.textContent = `Player used ${btn.textContent.toLowerCase()}!\nFoe computer used ${compChoice}!`;
+        text.textContent = `PLAYER used ${btn.textContent.toLowerCase()}!\nFoe COMPUTER used ${compChoice}!`;
         showAttack(btn.textContent.toLowerCase(), compChoice);
         let result = playRound(btn.textContent.toLowerCase(), compChoice);
         
@@ -217,7 +217,7 @@ function RestartGame() {
     playerHealth.style.width = "160px";
     playerHealth.style.backgroundColor = "rgb(44, 237, 44)";  // green
     computerHealth.style.backgroundColor = "rgb(44, 237, 44)";
-    text.textContent = "Foe wants to fight!";
+    text.textContent = "Foe COMPUTER wants to fight!";
 
     playerAttackImgID.style.visibility = "hidden";  // hide the attack image of the sprites
     compAttackImgID.style.visibility = "hidden";
